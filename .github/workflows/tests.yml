@@ -13,7 +13,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Checkout node_tests repository
+      - name: Checkout shortener-js-tests repository
         uses: actions/checkout@v4
         with:
           repository: shekshuev/shortener-js-tests
@@ -29,20 +29,7 @@ jobs:
           cd shortener-js-tests
           npm install
 
-      - name: Start server
-        run: |
-          cd shortener-js-tests
-          nohup node ../app/server.js &
-
-      - name: Wait for server to start
-        run: |
-          sleep 5
-
       - name: Run tests
         run: |
           cd shortener-js-tests
           npx mocha iter1.js
-
-      - name: Stop server
-        run: |
-          kill $(lsof -t -i:8080) || echo "Server is not running"
