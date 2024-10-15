@@ -31,7 +31,7 @@ jobs:
 
       - name: Start server
         run: |
-          cd node_tests
+          cd shortener-js-tests
           nohup node ../app/server.js &
 
       - name: Wait for server to start
