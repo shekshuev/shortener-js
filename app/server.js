@@ -28,7 +28,7 @@ const server = http.createServer((req, res) => {
 
         const originalURL = urlDatabase.get(shortURL);
         if (originalURL) {
-            res.writeHead(307, { Location: originalURL });
+            res.writeHead(200, { Location: originalURL });
             res.end();
         } else {
             res.writeHead(404, { 'Content-Type': 'text/plain' });
