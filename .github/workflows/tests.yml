@@ -40,7 +40,7 @@ jobs:
 
       - name: Run tests
         run: |
-          cd node_tests
+          cd shortener-js-tests
           npx mocha iter1.js
 
       - name: Stop server
