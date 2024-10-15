@@ -17,7 +17,7 @@ const server = http.createServer((req, res) => {
 
         req.on('end', () => {
             const shortURL = generateShortURL();
-            urlDatabase.set(shortURL, body.trim()); // Сохраняем оригинальный URL по его сокращённому идентификатору
+            urlDatabase.set(shortURL, JSON.parse(body).data); // Сохраняем оригинальный URL по его сокращённому идентификатору
 
             res.writeHead(201, { 'Content-Type': 'text/plain' });
             res.end(`http://localhost:8080/${shortURL}`);
@@ -28,7 +28,7 @@ const server = http.createServer((req, res) => {
 
         const originalURL = urlDatabase.get(shortURL);
         if (originalURL) {
-            res.writeHead(301, { Location: originalURL });
+            res.writeHead(307, { Location: originalURL });
             res.end();
         } else {
             res.writeHead(404, { 'Content-Type': 'text/plain' });
